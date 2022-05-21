@@ -1,0 +1,24 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EncodedXML">
+    <xs:annotation>
+      <xs:documentation>Výměna dat mezi Finančním analytickým úřadem a povinnými
+        subjekty podle zákona č. 253/2008 Sb., o některých opatřeních proti legalizaci
+        výnosů z trestné činnosti a financování terorismu, ve znění pozdějších předpisů.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ISDS_SenderID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="ISDS_RecipientID" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="SenderKey" type="xs:string"/>
+        <xs:element name="RecipientKey" type="xs:string"/>
+        <xs:element name="EncData" type="xs:string"/>
+        <xs:element name="EncPublicKey" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string"/>
+      <xs:attribute name="minVersion" type="xs:string" />
+      <xs:attribute name="part" type="xs:string" />
+      <xs:attribute name="name" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

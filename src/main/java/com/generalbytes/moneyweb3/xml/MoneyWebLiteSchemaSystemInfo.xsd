@@ -1,0 +1,13 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="SystemInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MWLversion" type="xs:string" />
+                <xs:element name="DateTime" type="xs:string" />
+                <xs:element name="EncDataSHA1" type="xs:string" />
+                <xs:element name="ComputerName" type="xs:string" />
+                <xs:element name="ComputerID" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
