@@ -18,6 +18,7 @@ import java.util.zip.ZipInputStream;
 
 public class Main {
     private static String AES_DECRYPTION_PASSWORD = "cPE7gDVDeRbr27U4u_Rot%~:QGw8GmJvoHs##4yHZApJpkCQD7G1Ac:Ca.BUXHzB";
+    private static String SYSTEM_INFO_DECRYPTION_PASSWORD = "ne5jujw2v8tiu546";
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
         System.out.println("MoneyWeb3 decoder 20220521");
@@ -30,8 +31,13 @@ public class Main {
             System.exit(1);
         }
         try {
+            String fileName = args[0];
+            if (! new File(fileName).exists()) {
+                System.out.println("File " + fileName + " doesn't exist.");
+                System.exit(1);
+            }
             //parse file
-            EncodedXML xml = unmarshallFile(args[0]);
+            EncodedXML xml = unmarshallFile(fileName);
 
             //Currently, only decryption of messages with 0FB3 is supported
             if (xml.getSenderKey().equalsIgnoreCase("0FB3") && xml.getRecipientKey().equalsIgnoreCase("0FB3")) {
@@ -40,7 +46,7 @@ public class Main {
                 String encPublicKey = xml.getEncPublicKey(); // this field contains public key but in case of 0FB3 contains systemInfo
 
                 //decode system info
-                String systemInfo = decryptSystemInfo(encPublicKey,"ne5jujw2v8tiu546");
+                String systemInfo = decryptSystemInfo(encPublicKey, SYSTEM_INFO_DECRYPTION_PASSWORD);
                 //parse decoded system info from XML format
                 SystemInfo si = unmarshallSystemInfo(systemInfo);
 
